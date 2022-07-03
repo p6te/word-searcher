@@ -1,4 +1,4 @@
-//export default
+// export default
 class WordSearch {
   constructor(letterGrid) {
     this.letterGrid = letterGrid;
@@ -58,7 +58,7 @@ class WordSearch {
     let addRow = "";
     this.letterGrid[0].length;
 
-    for (let i = 0; i < this.letterGrid[0].length - 1; i++) {
+    for (let i = 0; i < this.letterGrid[0].length; i++) {
       this.letterGrid.forEach((row) => {
         addRow += row[i];
       });
@@ -71,7 +71,7 @@ class WordSearch {
     let endX;
     let startY;
     let endY;
-    console.log(verticalArray);
+    // console.log(verticalArray);
 
     verticalArray.forEach((row, index) => {
       if (row.search(word) > -1) {
@@ -110,18 +110,16 @@ class WordSearch {
 }
 
 const wordSearch = new WordSearch([
-  "abcdefghij",
-  "haggsavajg",
-  "awopjrpqis",
-  "sfaslkfmsa",
-  "ljflksmafl",
-  "orjrwqiwra",
-  "ivqwnodgda",
-  "sapytonasm",
+  "abcdefghij", // j
+  "saggsasaga", // a
+  "qwopjrpqiv", // v
+  "mfaslkfmsa", // a
+  "msflksmafl",
+  "oqjrwqiwra",
+  "ijqwrjifmm",
+  "mafslkfasm",
   "koqwopwqrk",
-  "kvjaasbjch",
-  "sfpytonasm",
-  "sfpyoonasm", // java
+  "kvuvyfbjch",
 ]);
 
-wordSearch.find(["pyton", "java", "csos", "haslo"]);
+wordSearch.find(["pyton", "java", "word"]);
