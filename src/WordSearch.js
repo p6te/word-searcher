@@ -71,13 +71,15 @@ class WordSearch {
     let endX;
     let startY;
     let endY;
+    console.log(verticalArray);
 
     verticalArray.forEach((row, index) => {
       if (row.search(word) > -1) {
-        startX = row.length - row.search(word);
-        endX = startX - word.length + 1;
-        startY = index + 1;
-        endY = index + 1;
+        console.log(index);
+        startX = index + 1;
+        endX = index + 1;
+        startY = row.search(word) + 1;
+        endY = startY + word.length - 1;
       }
     });
 
@@ -109,10 +111,10 @@ class WordSearch {
 
 const wordSearch = new WordSearch([
   "abcdefghij",
-  "saggsavajg",
-  "qwopjrpqis",
-  "mfaslkfmsa",
-  "mjflksmafl",
+  "haggsavajg",
+  "awopjrpqis",
+  "sfaslkfmsa",
+  "ljflksmafl",
   "orjrwqiwra",
   "ivqwnodgda",
   "sapytonasm",
@@ -122,4 +124,4 @@ const wordSearch = new WordSearch([
   "sfpyoonasm", // java
 ]);
 
-wordSearch.find(["pyton", "java", "csos", "sqmm"]);
+wordSearch.find(["pyton", "java", "csos", "haslo"]);
