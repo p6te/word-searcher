@@ -1,5 +1,5 @@
-//
-export default class WordSearch {
+//export default
+class WordSearch {
   constructor(letterGrid) {
     this.letterGrid = letterGrid;
   }
@@ -52,38 +52,74 @@ export default class WordSearch {
     } else return;
   }
 
+  searcherTopBottom(word) {
+    //trun the array for 90 deg
+    let verticalArray = [];
+    let addRow = "";
+    this.letterGrid[0].length;
+
+    for (let i = 0; i < this.letterGrid[0].length - 1; i++) {
+      this.letterGrid.forEach((row) => {
+        addRow += row[i];
+      });
+
+      verticalArray.push(addRow);
+      addRow = "";
+    }
+
+    let startX;
+    let endX;
+    let startY;
+    let endY;
+
+    verticalArray.forEach((row, index) => {
+      if (row.search(word) > -1) {
+        startX = row.length - row.search(word);
+        endX = startX - word.length + 1;
+        startY = index + 1;
+        endY = index + 1;
+      }
+    });
+
+    if (startX > 0) {
+      return { start: [startY, startX], end: [endY, endX] };
+    } else return;
+  }
+
   find(words) {
     let resultsObject = {};
 
     words.forEach((word) => {
       const matchingWord = this.searcherHorizontal(word);
       const matchingWordReversed = this.searcherHorizontalReversed(word);
-
-      console.log(matchingWord);
+      const matchingWordVertical = this.searcherTopBottom(word);
 
       if (matchingWord !== undefined) {
         resultsObject[word] = matchingWord;
       } else if (matchingWordReversed !== undefined) {
         resultsObject[word] = matchingWordReversed;
+      } else if (matchingWordVertical !== undefined) {
+        resultsObject[word] = matchingWordVertical;
       } else resultsObject[word] = undefined;
     });
-
     console.log(resultsObject);
     return resultsObject;
   }
 }
 
-// const wordSearch = new WordSearch([
-//   "abcdefghij",
-//   "saggsavajg",
-//   "qwopjrpqis",
-//   "mfaslkfmsa",
-//   "msflksmafl",
-//   "oqjrwqiwra",
-//   "ijqwnodgda",
-//   "sfpytonasm",
-//   "koqwopwqrk",
-//   "kvjaasbjch", // java
-// ]);
+const wordSearch = new WordSearch([
+  "abcdefghij",
+  "saggsavajg",
+  "qwopjrpqis",
+  "mfaslkfmsa",
+  "mjflksmafl",
+  "orjrwqiwra",
+  "ivqwnodgda",
+  "sapytonasm",
+  "koqwopwqrk",
+  "kvjaasbjch",
+  "sfpytonasm",
+  "sfpyoonasm", // java
+]);
 
-// wordSearch.find(["pyton", "java", "csos"]);
+wordSearch.find(["pyton", "java", "csos", "sqmm"]);
